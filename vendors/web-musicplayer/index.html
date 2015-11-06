@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Music Player</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel='stylesheet' href='musicplayer.css'/>
+</head>
+<body>
+    <div id='main'>
+        <div id='player' />
+    </div>
+    <script type="text/javascript" src="musicplayer.js"></script>
+    <script>
+        new MusicPlayer({
+            container : document.getElementById('player'),
+            songList:[
+                'musics/lsjx.mp3',
+                'musics/abj.mp3',
+                'musics/10m.mp3',
+            ],
+            autoplay:false
+        })
+    </script>
+</body>
+
+</html>
