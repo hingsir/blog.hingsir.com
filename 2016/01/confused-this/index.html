@@ -41,7 +41,7 @@
 
 
 
-  <meta name="keywords" content="hingsir, chexingyou, ReferenceError" />
+  <meta name="keywords" content="JavaScript," />
 
 
 
@@ -59,15 +59,31 @@
 
 
 
-<meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hingsir's Notes">
-<meta property="og:url" content="http://hingsir.github.io/index.html">
+<meta name="description" content="关于this的指向问题，往往困扰着许多新人。this指的调用函数的那个对象，也即函数运行时所处的环境。函数有以下四种调用方式
+
+普通函数调用 this指向全局环境global，浏览器环境为window。严格模式下指向undefined
+对象方法调用 this指向该对象
+构造函数调用 this指向由构造函数实例化后的对象
+apply/call调用 指定this指向，func.apply(obj)，指">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS中this指向疑云">
+<meta property="og:url" content="http://hingsir.github.io/2016/01/confused-this/index.html">
 <meta property="og:site_name" content="Hingsir's Notes">
-<meta property="og:description">
+<meta property="og:description" content="关于this的指向问题，往往困扰着许多新人。this指的调用函数的那个对象，也即函数运行时所处的环境。函数有以下四种调用方式
+
+普通函数调用 this指向全局环境global，浏览器环境为window。严格模式下指向undefined
+对象方法调用 this指向该对象
+构造函数调用 this指向由构造函数实例化后的对象
+apply/call调用 指定this指向，func.apply(obj)，指">
+<meta property="og:updated_time" content="2016-01-12T09:03:07.162Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hingsir's Notes">
-<meta name="twitter:description">
+<meta name="twitter:title" content="JS中this指向疑云">
+<meta name="twitter:description" content="关于this的指向问题，往往困扰着许多新人。this指的调用函数的那个对象，也即函数运行时所处的环境。函数有以下四种调用方式
+
+普通函数调用 this指向全局环境global，浏览器环境为window。严格模式下指向undefined
+对象方法调用 this指向该对象
+构造函数调用 this指向由构造函数实例化后的对象
+apply/call调用 指定this指向，func.apply(obj)，指">
 
 
 
@@ -82,7 +98,7 @@
 
   <link href="/vendors/web-musicplayer/musicplayer.css" rel="stylesheet" type="text/css"/>
 
-  <title> Hingsir's Notes </title>
+  <title> JS中this指向疑云 | Hingsir's Notes </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-tw">
@@ -113,9 +129,7 @@
 
 
 
-  <div class="container one-column 
-   page-home 
-">
+  <div class="container one-column page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -222,9 +236,9 @@
       <div class="main-inner">
         <div id="content" class="content">
           
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
   
@@ -240,9 +254,7 @@
             
             
               
-                <a class="post-title-link" href="/2016/01/confused-this/" itemprop="url">
-                  JS中this指向疑云
-                </a>
+                JS中this指向疑云
               
             
           </h1>
@@ -297,10 +309,7 @@
       
 
       
-        
-          <span itemprop="articleBody">
-            
-              <p>关于this的指向问题，往往困扰着许多新人。this指的调用函数的那个对象，也即函数运行时所处的环境。函数有以下四种调用方式</p>
+        <span itemprop="articleBody"><p>关于this的指向问题，往往困扰着许多新人。this指的调用函数的那个对象，也即函数运行时所处的环境。函数有以下四种调用方式</p>
 <ul>
 <li><strong>普通函数调用</strong> this指向全局环境global，浏览器环境为window。严格模式下指向undefined</li>
 <li><strong>对象方法调用</strong> this指向该对象</li>
@@ -313,237 +322,65 @@
 <p>所以只要记住下面一句话，就不会搞错：</p>
 <p><strong>普通函数调用，不管该函数定义得多深，如果没显式指定其this指向，那么它就指向全局对象或者undefined</strong></p>
 <p>如果想调整上述例子使其打印出’a’，就可以利用<code>func.apply(this)</code>来实现。另外值得一提的是，A()和new A()的区别往往也会令人疏忽，有兴趣的可以看看A()执行结果。</p>
-
-            
-          </span>
-        
+</span>
       
     </div>
 
     <footer class="post-footer">
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                <a class="post-title-link" href="/2015/12/happy-new-year-2016/" itemprop="url">
-                  2016年度计划
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            發表於
-            <time itemprop="dateCreated" datetime="2015-12-31T09:36:41+08:00" content="2015-12-31">
-              2015-12-31
-            </time>
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分類於
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/life/" itemprop="url" rel="index">
-                    <span itemprop="name">生活随想</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
+            <a href="/tags/JavaScript/" rel="tag">#JavaScript</a>
           
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/12/happy-new-year-2016/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/happy-new-year-2016/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
         </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
       
 
       
-        
-          <span itemprop="articleBody">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-              <h1 id="2016年度计划">2016年度计划</h1><ul>
-<li>完成手头上未读完的书籍<br>《大秦帝国》《HTTP权威指南》《深入浅出NodeJs》</li>
-<li>再多读几本好书，计划一到两个月一本</li>
-<li>巩固前端基础知识，深入学习es6/react，保持对新技术的关注。</li>
-<li>前端工程化实践</li>
-<li>生娃？随缘！</li>
-</ul>
-
+              <a href="/2015/12/happy-new-year-2016/" rel="next" title="2016年度计划">
+                <i class="fa fa-chevron-left"></i> 2016年度计划
+              </a>
             
-          </span>
-        
-      
-    </div>
+          </div>
 
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
+          <div class="post-nav-prev post-nav-item">
             
-            
-              
-                <a class="post-title-link" href="/2015/10/start-up/" itemprop="url">
-                  开博第一篇 - for农历生日
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            發表於
-            <time itemprop="dateCreated" datetime="2015-10-29T09:17:32+08:00" content="2015-10-29">
-              2015-10-29
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分類於
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/life/" itemprop="url" rel="index">
-                    <span itemprop="name">生活随想</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/10/start-up/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/start-up/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
       
 
       
-        
-          <span itemprop="articleBody">
-            
-              <p>&emsp;&emsp;利用工作之余折腾了两天，终于把博客搭起来了，感谢<a href="https://hexo.io" target="_blank" rel="external">hexo</a>和<a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="external">next</a>，当然还有<a href="https://pages.github.com" target="_blank" rel="external">GitHub Pages</a>。一直以来都有开博客的打算，却一次次因拖延症而胎死腹中，这一回总算是把它生下来了。<br>&emsp;&emsp;写博客，或者说是写日记，更多是将来给自己回忆用，但如果写的东西能给哪怕一个人带来一点点帮助，又何乐不为呢？今天农历9月17日，恰好是自己农历生日，便将处女篇献给自己吧。更巧的是，创建这篇日记的时间是<code>2015-10-29 09:17:32</code>，看来冥冥之中已注定。<br>&emsp;&emsp;First of all，祝自己生快。生日愿望是，希望家人都健康平安，然后希望自己克服惰性，在技术上有所突破。2015年已经接近尾声了，现在做年终总结似乎有点早，那就简单回顾一下。2015年对于我来说是挺幸运的一年，比如公司年会上我竟然中了二等奖（佳能g16一台），以往年会可是从来没我份。这一年发生了两件很重要的事：</p>
-<ul>
-<li>重回上海。两年前怀揣着一个梦，从上海飞越千里到珠海，然而梦碎了，便又回到上海，回到最初出发的地方。工作上，我也从后端开发全职转入前端开发，趟一趟前端这一热潮，感谢老同学的引荐。</li>
-<li>喜结连理。是的，我们领证了。这是今年最重要的一件事，也是我人生中最重要的一件事。从此不再是一个人，也不再是一人吃饱全家不饿。都说结婚会改变一个人的心态，确实如此，结婚了才真正知道什么是责任感。</li>
-</ul>
-<p>&emsp;&emsp;今年还没做或者正在做的事也挺多的，要拍结婚照，要准备年底的高中毕业十周年聚会，还有最重要的婚礼。每一件都令人期待，又令人焦头烂额，但愿都能顺顺利利圆圆满满地完成。<br>&emsp;&emsp;写了这么久，才这么几个字，确实有必要捡一捡烂笔头了，怎么说曾经作文也是被当作范文的。下一篇，准备写点干货，一起期待下。</p>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/01/confused-this/"
+     data-title="JS中this指向疑云"
+     data-content=""
+     data-url="http://hingsir.github.io/2016/01/confused-this/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
 
 
         </div>
@@ -552,6 +389,14 @@
 
 
         
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/01/confused-this/"
+           data-title="JS中this指向疑云" data-url="http://hingsir.github.io/2016/01/confused-this/">
+      </div>
+    
+  </div>
+
 
       </div>
 
@@ -572,8 +417,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" src="/images/avatar.jpg" alt="hingsir" itemprop="image"/>
           <p class="site-author-name" itemprop="name">hingsir</p>
@@ -661,6 +515,19 @@
       </section>
 
       
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目錄</p>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
 
     </div>
   </aside>
@@ -747,6 +614,167 @@
   <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    motionMiddleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+      if (CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
 
   <script type="text/javascript" src="/js/bootstrap.js"></script>
 
