@@ -240,6 +240,109 @@
             
             
               
+                <a class="post-title-link" href="/2016/01/jquery-object-detect/" itemprop="url">
+                  jquery-object-detect
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2016-01-23T12:02:34+08:00" content="2016-01-23">
+              2016-01-23
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分類於
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/tech/" itemprop="url" rel="index">
+                    <span itemprop="name">技术杂谈</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/01/jquery-object-detect/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/jquery-object-detect/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>检测jquery对象是否存在</p>
+<blockquote>
+<p>2016-01-21 by <a href="https://github.com/hingsir" target="_blank" rel="external">@hingsir</a></p>
+</blockquote>
+<p>检测<code>$(selector)</code>是否存在，相信不少人写过类似下面的代码：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>($(selector))&#123;</span><br><span class="line">    <span class="comment">// do something</span></span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="comment">//do other things</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>然而这样写是有问题的，因为<code>$(selector</code>返回的是一个object，即便未匹配到任何元素，也会返回空数组<code>[]</code>。<code>ToBoolean([])</code>为true，那么else代码块永远也不会执行到，因此我们一般利用<code>$(selector).length&gt;0</code>来检测。</p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
                 <a class="post-title-link" href="/2016/01/confused-this/" itemprop="url">
                   JS中this指向疑云
                 </a>
@@ -582,7 +685,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-count">4</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>
