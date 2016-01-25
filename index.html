@@ -240,6 +240,115 @@
             
             
               
+                <a class="post-title-link" href="/2016/01/Speed-up-recursive-functions-with-memoization/" itemprop="url">
+                  Speed up recursive functions with memoization
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2016-01-25T10:10:17+08:00" content="2016-01-25">
+              2016-01-25
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分類於
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/tech/" itemprop="url" rel="index">
+                    <span itemprop="name">技术杂谈</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/01/Speed-up-recursive-functions-with-memoization/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/Speed-up-recursive-functions-with-memoization/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>Fibonacci sequence is very familiar to everybody. we can write the following function in 20 seconds.<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fibonacci = <span class="function"><span class="keyword">function</span>(<span class="params">n</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> n &lt;= <span class="number">1</span> ? n : fibonacci(n-<span class="number">1</span>) + fibonacci(n-<span class="number">2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>it works, but not efficient. it did lots of duplicate computing works, we can cache its previously computed results to speed it up.<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fibonacci = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> cache = &#123;</span><br><span class="line">        <span class="number">0</span>: <span class="number">0</span>,</span><br><span class="line">        <span class="number">1</span>: <span class="number">1</span></span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">n</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> n &lt;= <span class="number">1</span> ? cache[n] : (cache[n] = cache[n-<span class="number">1</span>] + cache[n-<span class="number">2</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure></p>
+<p>Also, we can define a higher-order function that accepts a function as its argument and returns a memoized version of the function.<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> memoize = <span class="function"><span class="keyword">function</span>(<span class="params">func</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> cache = &#123;&#125;;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> key = <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>).toString();</span><br><span class="line">        <span class="keyword">return</span> key <span class="keyword">in</span> cache ? cache[key] : (cache[key] = func.apply(<span class="keyword">this</span>,<span class="built_in">arguments</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">fibonacci = memoize(fibonacci);</span><br></pre></td></tr></table></figure></p>
+<p>we can use <code>memoize()</code> in many other situations</p>
+<ul>
+<li>GCD(Greatest Common Divisor)</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> gcd = memoize(<span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> t;</span><br><span class="line">    <span class="keyword">if</span> (a &lt; b) t=b, b=a, a=t;</span><br><span class="line">    <span class="keyword">while</span>(b != <span class="number">0</span>) t=b, b = a%b, a=t;</span><br><span class="line">    <span class="keyword">return</span> a;</span><br><span class="line">&#125;)</span><br><span class="line">gcd(<span class="number">27</span>,<span class="number">183</span>); <span class="comment">//=&gt; 3</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>Factorial calculation</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> factorial = memoize(<span class="function"><span class="keyword">function</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (n &lt;= <span class="number">1</span>) ? <span class="number">1</span> : n * factorial(n-<span class="number">1</span>);</span><br><span class="line">&#125;)</span><br><span class="line">factorial(<span class="number">5</span>); <span class="comment">//=&gt; 120</span></span><br></pre></td></tr></table></figure>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
                 <a class="post-title-link" href="/2016/01/jquery-object-detect/" itemprop="url">
                   检测jquery对象是否存在
                 </a>
@@ -515,114 +624,11 @@
             
               <h1 id="2016年度计划">2016年度计划</h1><ul>
 <li>完成手头上未读完的书籍<br>《大秦帝国》《HTTP权威指南》《深入浅出NodeJs》</li>
-<li>再多读几本好书，计划一到两个月一本</li>
+<li>再多读几本好书，计划每月一本</li>
 <li>巩固前端基础知识，深入学习es6/react，保持对新技术的关注。</li>
 <li>前端工程化实践</li>
-<li>生娃？随缘！</li>
+<li>生猴？随缘！</li>
 </ul>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                <a class="post-title-link" href="/2015/10/start-up/" itemprop="url">
-                  开博第一篇 - for农历生日
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            發表於
-            <time itemprop="dateCreated" datetime="2015-10-29T09:17:32+08:00" content="2015-10-29">
-              2015-10-29
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp; 分類於
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/life/" itemprop="url" rel="index">
-                    <span itemprop="name">生活随想</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/10/start-up/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/start-up/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>&emsp;&emsp;利用工作之余折腾了两天，终于把博客搭起来了，感谢<a href="https://hexo.io" target="_blank" rel="external">hexo</a>和<a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="external">next</a>，当然还有<a href="https://pages.github.com" target="_blank" rel="external">GitHub Pages</a>。一直以来都有开博客的打算，却一次次因拖延症而胎死腹中，这一回总算是把它生下来了。<br>&emsp;&emsp;写博客，或者说是写日记，更多是将来给自己回忆用，但如果写的东西能给哪怕一个人带来一点点帮助，又何乐不为呢？今天农历9月17日，恰好是自己农历生日，便将处女篇献给自己吧。更巧的是，创建这篇日记的时间是<code>2015-10-29 09:17:32</code>，看来冥冥之中已注定。<br>&emsp;&emsp;First of all，祝自己生快。生日愿望是，希望家人都健康平安，然后希望自己克服惰性，在技术上有所突破。2015年已经接近尾声了，现在做年终总结似乎有点早，那就简单回顾一下。2015年对于我来说是挺幸运的一年，比如公司年会上我竟然中了二等奖（佳能g16一台），以往年会可是从来没我份。这一年发生了两件很重要的事：</p>
-<ul>
-<li>重回上海。两年前怀揣着一个梦，从上海飞越千里到珠海，然而梦碎了，便又回到上海，回到最初出发的地方。工作上，我也从后端开发全职转入前端开发，趟一趟前端这一热潮，感谢老同学的引荐。</li>
-<li>喜结连理。是的，我们领证了。这是今年最重要的一件事，也是我人生中最重要的一件事。从此不再是一个人，也不再是一人吃饱全家不饿。都说结婚会改变一个人的心态，确实如此，结婚了才真正知道什么是责任感。</li>
-</ul>
-<p>&emsp;&emsp;今年还没做或者正在做的事也挺多的，要拍结婚照，要准备年底的高中毕业十周年聚会，还有最重要的婚礼。每一件都令人期待，又令人焦头烂额，但愿都能顺顺利利圆圆满满地完成。<br>&emsp;&emsp;写了这么久，才这么几个字，确实有必要捡一捡烂笔头了，怎么说曾经作文也是被当作范文的。下一篇，准备写点干货，一起期待下。</p>
 
             
           </span>
