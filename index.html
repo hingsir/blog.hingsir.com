@@ -240,6 +240,108 @@
             
             
               
+                <a class="post-title-link" href="/2016/02/reload-when-pressing-the-back-button/" itemprop="url">
+                  浏览器后退页面不刷新的问题
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2016-02-16T16:54:55+08:00" content="2016-02-16">
+              2016-02-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分類於
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/tech/" itemprop="url" rel="index">
+                    <span itemprop="name">技术杂谈</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/02/reload-when-pressing-the-back-button/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/02/reload-when-pressing-the-back-button/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>做项目的过程中遇到这样一个问题：提交表单到下一页，再点击浏览器后退按钮回到表单页，发现部分表单数据丢失或者还是旧的数据。检查响应头，确实设置了<code>Cache-control:no-cache</code>，但浏览器还是偷懒<code>from cache</code>了。百度，google了一圈发现解决方案都不尽如意，最后在SOF里输入几个英文关键字找到下面的问答完美解决。</p>
+<p><a href="http://stackoverflow.com/questions/9071838/force-reload-refresh-when-pressing-the-back-button?lq=1" target="_blank" rel="external">Force reload/refresh when pressing the back button</a></p>
+<p>仅仅设置<code>Cache-control:no-cache</code>并不够，还需设置<code>Expires</code> <code>Last-Modified</code> <code>Pragma</code></p>
+<p>PHP实现<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// any valid date in the past</span></span><br><span class="line">header(<span class="string">"Expires: Mon, 26 Jul 1997 05:00:00 GMT"</span>);</span><br><span class="line"><span class="comment">// always modified right now</span></span><br><span class="line">header(<span class="string">"Last-Modified: "</span> . gmdate(<span class="string">"D, d M Y H:i:s"</span>) . <span class="string">" GMT"</span>);</span><br><span class="line"><span class="comment">// HTTP/1.1</span></span><br><span class="line">header(<span class="string">"Cache-Control: private, no-store, max-age=0, no-cache, must-revalidate, post-check=0, pre-check=0"</span>);</span><br><span class="line"><span class="comment">// HTTP/1.0</span></span><br><span class="line">header(<span class="string">"Pragma: no-cache"</span>);</span><br></pre></td></tr></table></figure></p>
+<p>其他语言可参照着进行相应的设置。</p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
                 <a class="post-title-link" href="/2016/02/Speed-up-recursive-functions-with-memoization/" itemprop="url">
                   Speed up recursive functions with memoization
                 </a>
@@ -697,7 +799,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-count">5</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>
@@ -711,7 +813,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-count">2</span>
               <span class="site-state-item-name">標籤</span>
               </a>
           </div>
