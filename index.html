@@ -240,6 +240,131 @@
             
             
               
+                <a class="post-title-link" href="/2016/02/animate-css-user-guide/" itemprop="url">
+                  Animate.css 使用指南
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2016-02-19T16:51:28+08:00" content="2016-02-19">
+              2016-02-19
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分類於
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/tech/" itemprop="url" rel="index">
+                    <span itemprop="name">技术杂谈</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/02/animate-css-user-guide/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/02/animate-css-user-guide/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p><a href="http://hingsir.com/" target="_blank" rel="external">hingsir.com</a>首页的动画效果使用的是第三方动画库<a href="https://github.com/daneden/animate.css" target="_blank" rel="external">Animate.css</a>，它包含了很多酷炫的动画效果（<a href="https://daneden.github.io/animate.css/" target="_blank" rel="external">点击这里查看</a>），基本的使用方法如下：</p>
+<ul>
+<li><p>引入css文件</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">link</span> <span class="attribute">rel</span>=<span class="value">"stylesheet"</span> <span class="attribute">href</span>=<span class="value">"animate.min.css"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">head</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>给需要动画效果的元素添加对应的class</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"animated fadeIn"</span>&gt;</span>fadeIn<span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>自定义动画的显示时机和持续时间</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="id">#yourElement</span> <span class="rules">&#123;</span><br><span class="line">  <span class="rule"><span class="attribute">-vendor-animation-duration</span>:<span class="value"> <span class="number">3s</span></span></span>;</span><br><span class="line">  <span class="rule"><span class="attribute">-vendor-animation-delay</span>:<span class="value"> <span class="number">2s</span></span></span>;</span><br><span class="line">  <span class="rule"><span class="attribute">-vendor-animation-iteration-count</span>:<span class="value"> infinite</span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>是不是非常简单！但是尽管进行了压缩，<code>animate.min.css</code>仍然有50kb那么大，那么有办法再进一步精简吗？就比如我只用到了<code>bounce</code> <code>bounceInDown</code> <code>zoomIn</code>，完全没必要引入所有动画效果。接下来将教你如何定制自己的动画库</p>
+<ul>
+<li><p>克隆animate.css库到本地</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/daneden/animate.css.git</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装npm依赖</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改<code>animate-config.json</code>（建议先备份）<br>将不需要的动画效果全删掉，最后留下</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  "<span class="attribute">attention_seekers</span>": <span class="value">[</span><br><span class="line">    <span class="string">"bounce"</span></span><br><span class="line">  ]</span>,</span><br><span class="line">  "<span class="attribute">bouncing_entrances</span>": <span class="value">[</span><br><span class="line">    <span class="string">"bounceInDown"</span></span><br><span class="line">  ]</span>,</span><br><span class="line">  "<span class="attribute">zooming_entrances</span>": <span class="value">[</span><br><span class="line">    <span class="string">"zoomIn"</span></span><br><span class="line">  ]</span><br><span class="line"></span>&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>生成animate.min.css</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gulp</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>animate.min.css只剩下4kb，大功告成！</p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
                 <a class="post-title-link" href="/2016/02/reload-when-pressing-the-back-button/" itemprop="url">
                   浏览器后退页面不刷新的问题
                 </a>
@@ -799,7 +924,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-count">6</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>
@@ -813,7 +938,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-count">4</span>
               <span class="site-state-item-name">標籤</span>
               </a>
           </div>
