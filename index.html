@@ -240,6 +240,127 @@
             
             
               
+                <a class="post-title-link" href="/2016/02/awesome-type-convert/" itemprop="url">
+                  JS类型转换奇技淫巧
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            發表於
+            <time itemprop="dateCreated" datetime="2016-02-26T22:51:28+08:00" content="2016-02-26">
+              2016-02-26
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分類於
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/tech/" itemprop="url" rel="index">
+                    <span itemprop="name">技术杂谈</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/02/awesome-type-convert/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/02/awesome-type-convert/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p><strong><em>JS类型转换奇技淫巧</em></strong></p>
+<blockquote>
+<p>很酷炫有木有！！！因为可读性低，所以有些技巧并不提倡使用。但遇见别人这样写，得看得懂是怎么一回事！</p>
+</blockquote>
+<ul>
+<li><p>转布尔型</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">!!<span class="string">''</span>         <span class="comment">//=&gt; false</span></span><br><span class="line">!!<span class="literal">null</span>       <span class="comment">//=&gt; false</span></span><br><span class="line">!!<span class="literal">undefined</span>  <span class="comment">//=&gt; false</span></span><br><span class="line">!!<span class="literal">NaN</span>        <span class="comment">//=&gt; false</span></span><br><span class="line">!!<span class="number">0</span>          <span class="comment">//=&gt; false</span></span><br><span class="line">!!<span class="number">1</span>          <span class="comment">//=&gt; true</span></span><br><span class="line">!!-<span class="number">1</span>         <span class="comment">//=&gt; true</span></span><br><span class="line">!![]         <span class="comment">//=&gt; true</span></span><br><span class="line">!!&#123;&#125;         <span class="comment">//=&gt; true</span></span><br><span class="line">!!<span class="built_in">window</span>     <span class="comment">//=&gt; true</span></span><br><span class="line">!!<span class="literal">Infinity</span>   <span class="comment">//=&gt; true</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>转字符串</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">''</span> + <span class="number">123</span>      <span class="comment">//=&gt; '123'</span></span><br><span class="line"><span class="string">''</span> + <span class="literal">true</span>     <span class="comment">//=&gt; 'true'</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>转数值型</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">+<span class="keyword">new</span> <span class="built_in">Date</span>     <span class="comment">//=&gt; 1456480246437</span></span><br><span class="line">+<span class="string">'123'</span>        <span class="comment">//=&gt; 123</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>向下取整</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">~~<span class="number">3.4</span>          <span class="comment">//=&gt; 3</span></span><br><span class="line"><span class="number">3.4</span>|<span class="number">0</span>          <span class="comment">//=&gt; 3</span></span><br><span class="line">-<span class="number">3.4</span>^<span class="number">0</span>         <span class="comment">//=&gt; -3</span></span><br><span class="line">-<span class="number">3.4</span> &gt;&gt; <span class="number">0</span>      <span class="comment">//=&gt; -3</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>indexOf判断</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"><span class="keyword">if</span>(!~arr.indexOf(<span class="number">4</span>))&#123;</span><br><span class="line">  arr.push(<span class="number">4</span>);</span><br><span class="line">&#125;</span><br><span class="line">!!~arr.indexOf(<span class="number">1</span>) <span class="comment">//=&gt; true</span></span><br><span class="line">!!~arr.indexOf(<span class="number">5</span>) <span class="comment">//=&gt; false</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>类数组转数组</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arrLike = &#123;<span class="number">0</span>:<span class="string">'abc'</span>,<span class="number">1</span>:<span class="string">'xyz'</span>,length:<span class="number">2</span>&#125;;</span><br><span class="line"><span class="built_in">Array</span>.prototype.slice.call(arrLike)        <span class="comment">//=&gt; ['abc','xyz']</span></span><br><span class="line"><span class="comment">//常用 Array.prototype.slice.call(arguments)</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
                 <a class="post-title-link" href="/2016/02/animate-css-user-guide/" itemprop="url">
                   Animate.css 使用指南
                 </a>
@@ -854,7 +975,7 @@
         
           <span itemprop="articleBody">
             
-              <h1 id="2016年度计划">2016年度计划</h1><ul>
+              <h1 id="2016年度计划"><a href="#2016年度计划" class="headerlink" title="2016年度计划"></a>2016年度计划</h1><ul>
 <li>完成手头上未读完的书籍<br>《大秦帝国》《HTTP权威指南》《深入浅出NodeJs》</li>
 <li>再多读几本好书，计划每月一本</li>
 <li>巩固前端基础知识，深入学习es6/react，保持对新技术的关注。</li>
@@ -923,7 +1044,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-count">7</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>
